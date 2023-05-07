@@ -1,51 +1,66 @@
 package com.diogoizele.demo.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_product")
 public class Product {
 
-    private long id;
-    private String name;
-    private double price;
-    private Department department;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private String name;
+	private double price;
 
-    public Product(long id, String name, double price, Department department) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.department = department;
-    }
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
 
-    public Product() {
-    }
+	public Product(long id, String name, double price, Department department) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.department = department;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public Product() {
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public double getPrice() {
-        return price;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+	public double getPrice() {
+		return price;
+	}
 
-    public Department getDepartment() {
-        return department;
-    }
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 }
